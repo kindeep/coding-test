@@ -1,6 +1,5 @@
 import * as express from "express";
-import catsRouter from "./routes/cats.router";
-import sharksRouter from "./routes/sharks.router";
+import photosRouter from "./routes/photos.router";
 const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -16,8 +15,7 @@ app.use(bodyParser.urlencoded({}));
 
 // Routes
 
-app.use("/api/cats", catsRouter);
-app.use("/api/sharks", sharksRouter);
+app.use("/api/photos", photosRouter);
 
 const CLIENT_BUILD_PATH = path.join(__dirname, "../client/build");
 

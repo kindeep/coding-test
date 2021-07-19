@@ -2,8 +2,12 @@ import { Chip } from "@material-ui/core";
 import { Container } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import getCatImages from "../api/cats";
-import getSharkImages from "../api/sharks";
+import {
+  getCatImages,
+  getSharkImages,
+  getAllImages,
+  APIResponse,
+} from "../api/photos";
 import Carousel from "../components/Carousel";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,18 +35,19 @@ function Home() {
       setImages(null);
       let res: string[] = [];
 
-      if (displayState.sharks) {
-        const { data: sharks, success } = await getSharkImages();
-        if (success) {
-          res = [...res, ...sharks];
-        }
+      let response: APIResponse | null = null;
+
+      if (displayState.sharks && displayState.cats) {
+        response = await getAllImages();
+      } else if (displayState.sharks) {
+        response = await getSharkImages();
+      } else if (displayState.cats) {
+        response = await getCatImages();
+      } else {
       }
 
-      if (displayState.cats) {
-        const { data: cats, success } = await getCatImages();
-        if (success) {
-          res = [...res, ...cats];
-        }
+      if (response && response.success) {
+        res = response.data;
       }
 
       setImages(res);
@@ -58,7 +63,7 @@ function Home() {
   };
 
   return (
-    <> 
+    <>
       <Container>
         <div className={classes.chipContainer}>
           <Chip
