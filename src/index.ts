@@ -2,16 +2,15 @@ import * as express from "express";
 import photosRouter from "./routes/photos.router";
 const app = express();
 const path = require("path");
-const bodyParser = require("body-parser");
 const PORT = 3001;
 
 app.listen(PORT, function () {
   console.log(`Server Listening on ${PORT}`);
 });
 
-app.use(bodyParser.json({}));
+app.use(express.json({}));
 
-app.use(bodyParser.urlencoded({}));
+app.use(express.urlencoded({ extended: false }));
 
 // Routes
 
