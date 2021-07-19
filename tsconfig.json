@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+      "outDir": "./dist",
+      "allowJs": true,
+      "target": "es2015",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "strict": true,
+      "experimentalDecorators": true,
+      "importHelpers": true,
+      "lib": [ "es2020" ],
+      "skipLibCheck": true
+  },
+  "include": [
+      "./src/**/*"
+  ]
+}
