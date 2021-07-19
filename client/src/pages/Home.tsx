@@ -43,7 +43,7 @@ function Home() {
         response = await getSharkImages();
       } else if (displayState.cats) {
         response = await getCatImages();
-      } 
+      }
 
       if (response && response.success) {
         res = response.data;
