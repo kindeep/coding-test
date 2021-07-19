@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     height: 500,
     "&:hover button": {
       display: "block",
-      opacity: "1"
+      opacity: "1",
     },
   },
   imgDiv: {
@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 0,
   },
   image: {
-    width: "100%",
-    // height: 500,
+    maxWidth: "100%",
+    maxHeight: 500,
     objectFit: "contain",
   },
   arrowContainerLeft: {
@@ -59,9 +59,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   arrowButton: {
-    color: "#fff",
     opacity: "0",
-    transition: "opacity 0.3s"
+    transition: "opacity 0.3s",
+    backgroundColor: theme.palette.secondary.main,
+    "&:hover": {
+      backgroundColor: theme.palette.secondary.light,
+    },
   },
   emptyText: {
     padding: theme.spacing(1),
@@ -100,14 +103,16 @@ export const Carousel: React.FC<CarouselProps> = ({ imgUrls, loading }) => {
       <div className={classes.controlsWrapper}>
         <div className={classes.arrowContainerLeft}>
           <Tooltip title="Previous">
-            <IconButton
-              aria-label="Previous"
-              disabled={currentImg === 0}
-              onClick={prev}
-              className={classes.arrowButton}
-            >
-              <ChevronLeftIcon />
-            </IconButton>
+            <div>
+              <IconButton
+                aria-label="Previous"
+                disabled={currentImg === 0}
+                onClick={prev}
+                className={classes.arrowButton}
+              >
+                <ChevronLeftIcon />
+              </IconButton>
+            </div>
           </Tooltip>
         </div>
         <div className={classes.imgDiv}>
@@ -129,14 +134,16 @@ export const Carousel: React.FC<CarouselProps> = ({ imgUrls, loading }) => {
         </div>
         <div className={classes.arrowContainerRight}>
           <Tooltip title="Next">
-            <IconButton
-              onClick={next}
-              className={classes.arrowButton}
-              aria-label="Next"
-              disabled={currentImg >= imgUrls.length - 1}
-            >
-              <ChevronRightIcon />
-            </IconButton>
+            <div>
+              <IconButton
+                onClick={next}
+                className={classes.arrowButton}
+                aria-label="Next"
+                disabled={currentImg >= imgUrls.length - 1}
+              >
+                <ChevronRightIcon />
+              </IconButton>
+            </div>
           </Tooltip>
         </div>
       </div>
