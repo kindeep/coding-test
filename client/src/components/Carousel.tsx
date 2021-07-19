@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     alignItems: "center",
     justifyContent: "center",
-    margin: theme.spacing(1),
     userSelect: "none",
     backgroundColor: "#000",
     color: "#fff",
