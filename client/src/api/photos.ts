@@ -5,30 +5,30 @@ export interface APIResponse {
 
 export async function getCatImages(): Promise<APIResponse> {
   const response = await fetch("/api/photos/cats");
-  const { data } = await response.json();
+  const { data, success } = await response.json();
 
   return {
-    success: response.ok && data.success,
+    success: response.ok && success,
     data,
   };
 }
 
 export async function getSharkImages(): Promise<APIResponse> {
   const response = await fetch("/api/photos/sharks");
-  const { data } = await response.json();
+  const { data, success } = await response.json();
 
   return {
-    success: response.ok && data.success,
+    success: response.ok && success,
     data,
   };
 }
 
 export async function getAllImages(): Promise<APIResponse> {
   const response = await fetch("/api/photos/");
-  const { data } = await response.json();
+  const { data, success } = await response.json();
 
   return {
-    success: response.ok && data.success,
+    success: response.ok && success,
     data,
   };
 }
